@@ -5,7 +5,7 @@
 @section('content')
 <div class="mx-1">
     <x-bread-crumb>
-        <li class="breadcrumb-item active mb-3" aria-current="page">Blog Lists</li>
+        <li class="breadcrumb-item active mb-3" aria-current="page">Case Lists</li>
     </x-bread-crumb>
 
     <div class="row">
@@ -43,37 +43,38 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Parties</th>
-                                <th>Case Number</th>
+                                <th>Title</th>
+                                
                                 <th>Category</th>
                                 <th>Owner</th>
+                                <th>Read Time</th>
                                 <th>Control</th>
                                 <th>Created_at</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            @forelse ($cases as $key=>$case)
+                            @forelse ($blogs as $key=>$case)
                                 
                                 <tr>
                                     <td>{{ ++$key }}</td>
                                     <td class="small">{{ Str::words($case->title, 1, ' .....') }}</td>
-                                    <td>{{ $case->case_number }}</td>
-                                    <td>{{ $case->category->title }}</td>
-                                    <td>{{ $case->user->name }}</td>
+                                    <td>{{ $case->categories }}</td>
+                                    <td>{{ $case->user_id }} </td>
+                                    <td>{{ $case->read_time }} Minutes</td>
                                     <td class="text-nowrap">
-                                        <a href="{{ route('problem.show', $case->id) }}" class="btn btn-sm btn-outline-success">
+                                        <a href="/dashboard/blogs/{{  $case->id }}/show" class="btn btn-sm btn-outline-success">
                                             Show
                                         </a>
 
-                                        <a href="{{ route('problem.edit', $case->id) }}" class="btn btn-sm btn-outline-primary">
+                                        <a href="/dashboard/blogs/{{  $case->id }}/edit" class="btn btn-sm btn-outline-primary">
                                             Edit
                                         </a>
 
-                                        <form action="{{ route('problem.destroy', $case->id) }}" method="post" class="d-inline-block" id="form{{ $case->id }}">
+                                        <form action="/dashboard/blog/{{ $case->id }}/delete" method="post" class="d-inline-block" >
                                             @csrf
-                                            @method('delete')
-                                            <button type="button" class="btn btn-sm btn-outline-danger" onclick="return askConfirm({{ $case->id }})">Delete</button>
+                                            <input type="hidden" name="id" value="{{ $case->id }}">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure to delete this blog')">Delete</button>
                                         </form>
                                     </td>
                                     <td>
@@ -101,8 +102,8 @@
                     </table>
 
                     <div class="d-lg-flex justify-content-between align-items-center">
-                        {{ $cases->appends(request()->all())->links() }}
-                        <h4 class="mb-0">Total : {{ $cases->total() }}</h4>
+                        {{ $blogs->appends(request()->all())->links() }}
+                        <h4 class="mb-0">Total : {{ $blogs->total() }}</h4>
                     </div>
                </div>
             </div>

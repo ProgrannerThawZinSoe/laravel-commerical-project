@@ -24,6 +24,7 @@
             <x-menu-title title="Category Manager" icon="fas fa-layer-group"></x-menu-title>
             <x-menu-item name="Case Category" icon="fas fa-stream" link="{{ route('category.index') }}"></x-menu-item>
             <x-menu-item name="Article Category" icon="fas fa-stream" link="{{ route('article-category.index') }}"></x-menu-item>
+            <x-menu-item name="Blog Category" icon="fas fa-stream" link="/dashboard/blog-category"></x-menu-item>
             <hr class="text-primary">
 
             {{-- Case Manager --}}
@@ -37,6 +38,19 @@
             <x-menu-item name="Create Article" icon="fas fa-plus-circle" link="{{ route('article.create') }}"></x-menu-item>
             <x-menu-item name="Article Lists" icon="far fa-list-alt" link="{{ route('article.index') }}"></x-menu-item>
             <hr class="text-primary">
+
+            {{-- Contributor Manager --}}
+            <x-menu-title title="Contributor Manager" icon="far fa-user-circle"></x-menu-title>
+            <x-menu-item name="Create Contributor Account" icon="fas fa-plus-circle" link="/dashboard/contributor/create"></x-menu-item>
+            <x-menu-item name="Contributor Lists" icon="far fa-list-alt" link="/dashboard/contributor"></x-menu-item>
+            <hr class="text-primary">
+
+            {{-- Blog Manager --}}
+            <x-menu-title title="Blog Manager" icon="far fa-user-circle"></x-menu-title>
+            <x-menu-item name="Create new Blogs " icon="fas fa-plus-circle" link="/dashboard/blog/create"></x-menu-item>
+            <x-menu-item name="Blogs Lists" icon="far fa-list-alt" link="/dashboard/blogs"></x-menu-item>
+            <hr class="text-primary">
+
 
             {{-- Proccess Schedual --}}
            {{-- <x-menu-title title="Proccess Schedual"></x-menu-title>

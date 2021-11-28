@@ -10,9 +10,9 @@
     </thead>
 
     <tbody>
-        @foreach (App\Category::with('user')->get() as $category)
+        @foreach (App\Category::with('user')->get() as $key=>$category)
             <tr>
-                <td>{{ $category->id }}</td>
+                <td>{{ ++$key }}</td>
                 <td>{{ $category->title }}</td>
                 <td>{{ $category->user->name }}</td>
                 <td>

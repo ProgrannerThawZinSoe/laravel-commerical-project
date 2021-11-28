@@ -29,6 +29,26 @@ Route::middleware('auth')->group(function () {
         Route::resource('problem', 'ProblemController');
         Route::resource('article', 'ArticleController');
         Route::resource('article-category', 'ArticleCategoryController');
+        /* contributor */
+        Route::get('/contributor','ContributorController@index');
+        Route::get('/contributor/create','ContributorController@create');
+        Route::post('/contributor/create','ContributorController@store');
+        Route::get('/contributor/{id}/edit','ContributorController@edit');
+        Route::get('/contributor/{id}/delete','ContributorController@destory');
+        /* Blog  Category */
+        Route::get("/blog-category","BlogCategoryController@index");
+        Route::post("/blog-category/create","BlogCategoryController@create");
+        Route::post('/blog-category/{id}/delete','BlogCategoryController@destory');
+        Route::get('/blog-category/{id}/edit','BlogCategoryController@edit');
+        Route::post("/blog-category/{id}/upgrade",'BlogCategoryController@upgrade');
+        /* Blog */
+        Route::get("/blogs","BlogController@index");
+        Route::get("/blog/create","BlogController@create");
+        Route::post("/blog/create","BlogController@store");
+        Route::get("/blogs/{id}/edit","BlogController@edit");
+        Route::get("/blogs/{id}/show","BlogController@show");
+        Route::post("/blogs/{id}/edit","BlogController@upgrade");
+        Route::post("/blog/{id}/delete","BlogController@delete");
     });
 
     Route::prefix('profile')->group(function () {
